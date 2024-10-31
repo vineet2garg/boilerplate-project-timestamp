@@ -74,6 +74,25 @@ app.get("/api/:date", function (req, res) {
   }
 });
 
+// second first API endpoint... 
+app.get("/api/whoami", function (req, res) {
+
+  const userAgent = req.headers['user-agent'];
+  const language = req.headers["accept-language"];
+  const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+
+  console.log(`lang [${language}], userAgent : [${userAgent}], ipAddress : [${ipAddress}]`);
+
+  res.status(200)
+    .json(
+      {
+        ipaddress: ipAddress,
+        language: language,
+        software: userAgent
+      }
+    );
+});
+
 
 // Listen on port set in environment variable or default to 3000
 var listener = app.listen(process.env.PORT || 3000, function () {

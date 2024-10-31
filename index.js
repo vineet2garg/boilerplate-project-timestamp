@@ -59,7 +59,7 @@ app.get("/api/:date", function (req, res) {
       res.status(200)
         .json(
           {
-            unix: date,
+            unix: Number(date),
             utc: utcDate
           }
         );
